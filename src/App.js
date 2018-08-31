@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import Home from './components/home/Home';
 import Restaurants from './components/restaurants/Restaurants'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faMapMarkerAlt, faStar, faUserFriends } from '@fortawesome/free-solid-svg-icons'
 import './App.css';
+
+library.add(faMapMarkerAlt);
+library.add(faStar);
+library.add(faUserFriends);
 
 class App extends Component {
 
@@ -13,7 +19,8 @@ class App extends Component {
         stars: [],
         costs: [],
         types: []
-      }
+      },
+      restaurants: []
     };
   }
 
@@ -21,7 +28,10 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.city ? 
-          <Restaurants city={this.state.city} filters={this.state.filters} /> :
+          <Restaurants 
+            city={this.state.city} 
+            restaurants={this.state.restaurants}
+            filters={this.state.filters} /> :
           <Home />}
       </div>
     );

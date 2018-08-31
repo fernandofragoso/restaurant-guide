@@ -1,0 +1,39 @@
+button {
+  padding: 15px;
+  width: 140px;
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  background-color: #39b54A;
+  /* color: black; */
+  text-transform: uppercase;
+  height: 100%
+}
+
+.Search {
+  display: flex;
+}
+
+.Search__icon {
+  color: #767676;
+  font-size: 20px;
+}
+
+.Search__area {
+  flex-grow: 1;
+  background-color: #FFF;
+  margin-right: 10px;
+  /* height: 40px; */
+  align-items: center;
+  display: flex;
+  padding: 10px;
+}
+
+.Search__input {
+  flex-grow: 1;
+  border: 0;
+  outline: none;
+  margin: 0 10px;
+  color: #767676;
+  font-size: 20px;
+}
