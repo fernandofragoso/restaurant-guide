@@ -5,7 +5,7 @@ class Restaurants extends Component {
   render() {
     return (
       <div className="Restaurants">
-        <h1>Restaurants</h1>
+        <h1>Restaurants @ {this.props.city.name}</h1>
       </div>
     );
   }

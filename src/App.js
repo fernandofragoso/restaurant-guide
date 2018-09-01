@@ -31,10 +31,17 @@ class App extends Component {
           <Restaurants 
             city={this.state.city} 
             restaurants={this.state.restaurants}
-            filters={this.state.filters} /> :
-          <Home />}
+            filters={this.state.filters}
+            onSearch={(city) => this._onSearch(city)} /> :
+          <Home onSearch={(city) => this._onSearch(city)} />}
       </div>
     );
+  }
+
+  _onSearch(city) {
+    this.setState({
+      city: city
+    });
   }
 }
 

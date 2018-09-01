@@ -13,7 +13,7 @@ class Home extends Component {
           <div className="Home__header">
             <h2>Descubra os melhores restaurantes na sua cidade</h2>
           </div>
-          <Search />
+          <Search onSearch={this.props.onSearch} />
         </div>
       </div>
     );
