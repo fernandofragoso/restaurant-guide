@@ -39,7 +39,7 @@ class Search extends Component {
           </div>
         </section>
         <div className="Search__button">
-          <button onClick={() => this._handleSubmit()} disabled={!this.state.selected}>Buscar</button>
+          <button className="semibold" onClick={() => this._handleSubmit()} disabled={!this.state.selected}>Buscar</button>
         </div>
       </div>
     );

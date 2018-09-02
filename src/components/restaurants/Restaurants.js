@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Restaurants.css';
 import Search from '../search/Search';
 import Filters from './Filters';
+import Restaurant from './Restaurant';
 
 class Restaurants extends Component {
 
@@ -19,26 +20,26 @@ class Restaurants extends Component {
   render() {
     return (
       <div className="Restaurants">
-        <header className="Restaurant__header">
-          <div className="Restaurant__logo">
+        <header className="Restaurants__header">
+          <div className="Restaurants__logo">
             <img src='/logo-red.jpg' />
           </div>
-          <div className="Restaurant__search">
-            <Search small onSearch={this.props.onSearch} />
+          <div className="Restaurants__search">
+            <Search onSearch={this.props.onSearch} />
           </div>
         </header>
         {!this.props.isLoading &&
-          <div className="Restaurant__content">
-            <div className="Restaurant__filters">
+          <div className="Restaurants__content">
+            <aside className="Restaurants__filters">
               <Filters filters={this.props.filters} cuisines={this.props.cuisines} />
-            </div>
-            <div className="Restaurant__list">
-              <span className="semibold">Restaurantes em {this.props.city.name}</span>
-              <ul>
+            </aside>
+            <div className="Restaurants__list">
+            <span className="semibold">Restaurantes em {this.props.city.name}</span>
+              <div className="Restaurants__area">
                 {this.props.restaurants.map(({restaurant}) =>
-                  <li key={restaurant.id}>{restaurant.name}</li>
+                  <Restaurant key={restaurant.id} restaurant={restaurant} />
                 )}
-              </ul>
+              </div>
             </div>
           </div>
         }

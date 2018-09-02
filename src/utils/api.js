@@ -14,5 +14,5 @@ export const getCuisinesByCity = async (cityId) => {
 
 export const getRestaurantsByCity = async (cityId, cuisines = null) => {
   const queryCuisines = (cuisines) ? `&cuisines=${cuisines.join(',')}` : '';
-  return axios.get(`${URL}/search?entity_id=${cityId}&entity_type=city${queryCuisines}`, { headers: HEADERS });
+  return axios.get(`${URL}/search?entity_id=${cityId}&count=18&entity_type=city${queryCuisines}`, { headers: HEADERS });
 }

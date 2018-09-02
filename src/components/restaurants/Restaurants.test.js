@@ -7,6 +7,14 @@ const cityMock = {
   name: 'name'
 };
 
+const restaurantsMock = [];
+
 it('renders without crashing', () => {
-  shallow(<Restaurants city={cityMock} />);
+  shallow(
+    <Restaurants 
+      city={cityMock} 
+      restaurants={restaurantsMock} 
+      isLoading={false} 
+      onLoadRestaurants={() => {}}/>
+  );
 });

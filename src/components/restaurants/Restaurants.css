@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.Restaurant__header {
+.Restaurants__header {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -10,27 +10,28 @@
   background-color: #FFF;
 }
 
-.Restaurant__logo {
+.Restaurants__logo {
   margin: 10px 20px;
   flex-basis: 200px;
   text-align: left;
 }
 
-.Restaurant__logo img {
+.Restaurants__logo img {
   width: 110px;
 }
 
-.Restaurant__search {
+.Restaurants__search {
   flex-grow: 1;
   margin: 10px 20px;
 }
 
-.Restaurant__content {
+.Restaurants__content {
   display: flex;
 }
 
-.Restaurant__filters {
+.Restaurants__filters {
   flex-basis: 200px;
+  flex-shrink: 0;
   margin: 10px 20px;
   box-shadow: 0 2px 10px 0 #CCC;
   background-color: #FFF;
@@ -38,11 +39,17 @@
   min-height: calc(100vh - 130px);
 }
 
-.Restaurant__list {
+.Restaurants__list {
   flex-grow: 1;
   margin: 10px;
 }
 
-.Restaurant__loading {
+.Restaurants__area {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.Restaurants__loading {
   text-align: center;
 }
