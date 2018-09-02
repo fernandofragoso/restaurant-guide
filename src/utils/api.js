@@ -12,7 +12,7 @@ export const getCuisinesByCity = async (cityId) => {
   return axios.get(`${URL}/cuisines?city_id=${cityId}`, { headers: HEADERS });
 }
 
-export const getRestaurantsByCity = async (cityId, cuisines = null) => {
+export const getRestaurantsByCity = async (start, cityId, cuisines = null) => {
   const queryCuisines = (cuisines) ? `&cuisines=${cuisines.join(',')}` : '';
-  return axios.get(`${URL}/search?entity_id=${cityId}&count=18&entity_type=city${queryCuisines}`, { headers: HEADERS });
+  return axios.get(`${URL}/search?entity_id=${cityId}&start=${start}&count=18&entity_type=city${queryCuisines}`, { headers: HEADERS });
 }

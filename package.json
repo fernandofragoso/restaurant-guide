@@ -10,6 +10,7 @@
     "axios": "^0.18.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-infinite-scroller": "^1.2.0",
     "react-scripts": "1.1.5"
   },
   "scripts": {

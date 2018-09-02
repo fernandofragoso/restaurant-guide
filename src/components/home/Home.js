@@ -7,11 +7,11 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className="Home__logo">
-          <img src='/logo-white.jpg' />
+          <img src='/logo-white.jpg' alt='uaifood logo' />
         </div>
         <div className="Home__center">
           <div className="Home__header">
-            <span class="extrabold">Descubra os melhores restaurantes na sua cidade</span>
+            <span className="extrabold">Descubra os melhores restaurantes na sua cidade</span>
           </div>
           <Search onSearch={this.props.onSearch} />
         </div>
