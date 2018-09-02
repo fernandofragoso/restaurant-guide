@@ -11,7 +11,7 @@ class Home extends Component {
         </div>
         <div className="Home__center">
           <div className="Home__header">
-            <h2>Descubra os melhores restaurantes na sua cidade</h2>
+            <span>Descubra os melhores restaurantes na sua cidade</span>
           </div>
           <Search onSearch={this.props.onSearch} />
         </div>

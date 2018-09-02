@@ -1,0 +1,20 @@
+.Filter__title {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #A5A5A5;
+}
+
+.Filter__section {
+  margin: 10px 0;
+}
+
+.Filter__section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Filter__section input {
+  color: #484848;
+  margin-right: 10px;
+}

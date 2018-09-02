@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Home from './components/home/Home';
-import Restaurants from './components/restaurants/Restaurants'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faMapMarkerAlt, faStar, faUserFriends } from '@fortawesome/free-solid-svg-icons'
+import Restaurants from './components/restaurants/Restaurants';
+import { getCuisinesByCity, getRestaurantsByCity } from './utils/api';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faMapMarkerAlt, faStar, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 
 library.add(faMapMarkerAlt);
@@ -18,9 +19,11 @@ class App extends Component {
       filters: {
         stars: [],
         costs: [],
-        types: []
+        cuisines: []
       },
-      restaurants: []
+      restaurants: [],
+      cuisines: [],
+      isLoading: false
     };
   }
 
@@ -29,18 +32,48 @@ class App extends Component {
       <div className="App">
         {this.state.city ? 
           <Restaurants 
+            isLoading={this.state.isLoading}
             city={this.state.city} 
             restaurants={this.state.restaurants}
             filters={this.state.filters}
-            onSearch={(city) => this._onSearch(city)} /> :
-          <Home onSearch={(city) => this._onSearch(city)} />}
+            cuisines={this.state.cuisines}
+            onSearch={(city) => this._onSearch(city)}
+            onLoadRestaurants={(city) => this._onLoadRestaurants(city)} /> :
+          <Home 
+            isLoading={this.state.isLoading} 
+            onSearch={(city) => this._onSearch(city)} />}
       </div>
     );
   }
 
-  _onSearch(city) {
+  async _onSearch(city) {
     this.setState({
-      city: city
+      city,
+    });
+  }
+
+  async _onLoadRestaurants(city) {
+    this._setLoading(true);
+    this._clearRestaurants();
+    const { data: { cuisines } } = await getCuisinesByCity(city.id);
+    const { data: { restaurants } } = await getRestaurantsByCity(city.id);
+    this.setState({
+      cuisines,
+      restaurants,
+      isLoading: false
+    });
+  }
+
+  _setLoading(bool) {
+    this.setState({
+      isLoading: bool
+    });
+  }
+
+  _clearRestaurants() {
+    this.setState({
+      restaurants: [],
+      cuisines: []
     });
   }
 }

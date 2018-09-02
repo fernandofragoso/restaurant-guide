@@ -1,11 +1,9 @@
 button {
-  padding: 15px;
   width: 140px;
   border: 0;
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   background-color: #39b54A;
-  /* color: black; */
   text-transform: uppercase;
   height: 100%;
   cursor: pointer;
@@ -33,13 +31,14 @@ button:disabled {
 .Search__bar {
   border: 1px solid #EEE;
   background-color: #FFF;
-  height: 40px;
+  /* height: 40px; */
   align-items: center;
   display: flex;
   padding: 10px;
 }
 
 .Search__options {
+  text-align: left;
   position: absolute;
   width: 100%;
   background-color: white;
@@ -50,7 +49,8 @@ button:disabled {
 
 .Search__option-item {
   padding: 10px 15px;
-  border-bottom: 1px solid #EEE;
+  border: 1px solid #EEE;
+  border-top: 0;
   cursor: pointer;
 }
 
@@ -68,5 +68,5 @@ button:disabled {
   outline: none;
   margin: 0 10px;
   color: #767676;
-  font-size: 20px;
+  font-size: 18px;
 }

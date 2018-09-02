@@ -3,9 +3,47 @@
 body {
   padding: 0;
   font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  background-color: #FAFAFA;
 }
 
 body, html, #root {
   height: 100%;
   margin: 0;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.extrabold {
+  font-weight: 800;
+}
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  display: inline-block;
+}
+.loading:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #CCC;
+  border-color: #CCC transparent #CCC transparent;
+  animation: loading 1.2s linear infinite;
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

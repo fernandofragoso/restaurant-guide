@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Search.css';
-import axios from 'axios';
-
-const URL = 'https://developers.zomato.com/api/v2.1';
-const API_KEY = process.env.REACT_APP_ZOMATO_API_KEY;
+import { searchCities } from '../../utils/api';
 
 class Search extends Component {
 
@@ -21,7 +18,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="Search">
+      <div className={`Search ${(this.props.small) ? 'Search--small' : ''}`}>
         <section className="Search__area">
           <div className="Search__bar">
             <FontAwesomeIcon className="Search__icon" icon="map-marker-alt" />
@@ -63,14 +60,18 @@ class Search extends Component {
 
   _handleSubmit() {
     this.props.onSearch(this.state.selected);
+    this.setState({
+      selected: null,
+      cities: [],
+      value: ''
+    });
   }
 
   _searchCities(term) {
     clearTimeout(this.timeout);
     if (term !== "") {
       this.timeout = setTimeout(() => {
-        let headers = { "user-key": API_KEY };
-        axios.get(`${URL}/cities?q=${term}`, { headers }).then(response => {
+        searchCities(term).then(response => {
           this.setState({
             cities: response.data.location_suggestions,
             selected: null
