@@ -15,6 +15,7 @@ it('renders without crashing', () => {
       city={cityMock} 
       restaurants={restaurantsMock} 
       isLoading={false} 
+      onLoadCuisines={() => {}}
       onLoadRestaurants={() => {}}/>
   );
 });
