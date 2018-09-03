@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const URL = 'https://developers.zomato.com/api/v2.1';
-const API_KEY = process.env.REACT_APP_ZOMATO_API_KEY;
+const API_KEY = '54a11c53d5942e2996c0360c8aa53ff9';
 const HEADERS = { "user-key": API_KEY};
 
 export const searchCities = async (term) => {
