@@ -1,0 +1,54 @@
+.Restaurant {
+  margin: 0 20px 20px 0;
+  background-color: #FFF;
+  box-shadow: 0 2px 10px 0 #CCC;
+  flex-grow: 1;
+  flex-basis: 300px;
+
+  @media (max-width: 600px) {
+    margin: 20px 0 0 0;
+  }
+
+  &__image {
+    height: 150px;
+    background: url(/food.jpg) no-repeat center center;
+  }
+
+  &__content {
+    padding: 20px;
+  }
+
+  &__name {
+    color: #333;
+    font-size: 20px;
+  }
+
+  &__address {
+    color: #A5A5A5;
+    font-size: 18px;
+  }
+
+  &__stars {
+    color: #39B54A;
+    font-size: 16px;
+  }
+
+  &__labels {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__price {
+    color: #FFF;
+    background-color: #39B54A;
+    padding: 5px 10px;
+    margin: 10px 10px 0 0;
+  }
+
+  &__cuisine {
+    color: #484848;
+    background-color: #E7E7E7;
+    padding: 5px 10px;
+    margin: 10px 10px 0 0;
+  }
+}
