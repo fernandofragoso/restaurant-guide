@@ -18,9 +18,35 @@ class Restaurants extends Component {
   }
 
   render() {
-
-    // let items = [];
-    let items = this.props.restaurants.map(({restaurant}, index) =>
+    const filters = this.props.filters;
+    let restaurants = this.props.restaurants.filter(({restaurant}) => {
+      if (filters.stars.length !== 0) {
+        const restaurantRating = Math.round(restaurant.user_rating.aggregate_rating);
+        return filters.stars.some((star) => {
+          return (restaurantRating === parseInt(star, 10)); 
+        });
+      }
+      return true;
+    }).filter(({restaurant}) => {
+      if (filters.costs.length !== 0) {
+        const restaurantCost = restaurant.average_cost_for_two;
+        return filters.costs.some((cost) => {
+          switch(parseInt(cost, 10)) {
+            case 1:
+              return (restaurantCost <= 50);
+            case 2:
+              return (restaurantCost > 50 && restaurantCost <= 80);
+            case 3:
+              return (restaurantCost > 80 && restaurantCost <= 110);
+            case 4:
+              return (restaurantCost > 110);
+            default:
+              return true;
+          }
+        });
+      }
+      return true;
+    }).map(({restaurant}, index) =>
       <Restaurant key={index} restaurant={restaurant} />
     );
 
@@ -37,7 +63,10 @@ class Restaurants extends Component {
         {!this.props.isLoading &&
           <div className="Restaurants__content">
             <aside className="Restaurants__filters">
-              <Filters filters={this.props.filters} cuisines={this.props.cuisines} />
+              <Filters 
+                filters={this.props.filters} 
+                onChangeFilters={this.props.onChangeFilters} 
+                cuisines={this.props.cuisines} />
             </aside>
             <div className="Restaurants__list">
               <span className="semibold">Restaurantes em {this.props.city.name}</span>
@@ -45,10 +74,11 @@ class Restaurants extends Component {
                 initialLoad={true}
                 pageStart={0}
                 loadMore={this.props.onLoadRestaurants}
-                hasMore={true}
+                hasMore={this.props.hasMore}
+                threshold={100}
                 loader={<span key="1">Carregando...</span>}>
                 <div className="Restaurants__area">
-                  {items}
+                  {restaurants}
                 </div>
               </InfiniteScroll>
             </div>

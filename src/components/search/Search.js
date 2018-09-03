@@ -12,7 +12,8 @@ class Search extends Component {
     this.state = {
       value: '',
       cities: [],
-      selected: null
+      selected: null,
+      notFound: false
     };
   }
 
@@ -23,10 +24,14 @@ class Search extends Component {
           <div className="Search__bar">
             <FontAwesomeIcon className="Search__icon" icon="map-marker-alt" />
             <input 
+              ref={(input) => { this.nameInput = input; }} 
               className="Search__input" 
               placeholder='Digite a sua cidade' 
               value={this.state.value}
               onChange={(event) => this._handleChange(event)}
+              onKeyPress={(event) => {
+                (event.key === 'Enter') ? this._handleSubmit() : null
+              }}
               type="text" />
           </div>
           <div className="Search__options">
@@ -36,6 +41,11 @@ class Search extends Component {
                 <div className="state">{city.state_name || city.country_name}</div>
               </div>
             )}
+            {this.state.notFound &&
+              <div className="Search__option-not-found">
+                <div className="city">Cidade não Encontrada</div>
+              </div>
+            }
           </div>
         </section>
         <div className="Search__button">
@@ -46,7 +56,11 @@ class Search extends Component {
   }
 
   _handleChange(event) {
-    this.setState({value: event.target.value});
+
+    this.setState({
+      value: event.target.value,
+      notFound: false
+    });
     this._searchCities(event.target.value);
   }
 
@@ -56,15 +70,18 @@ class Search extends Component {
       cities: [],
       value: city.name
     });
+    this.nameInput.focus();
   }
 
   _handleSubmit() {
-    this.props.onSearch(this.state.selected);
-    this.setState({
-      selected: null,
-      cities: [],
-      value: ''
-    });
+    if (this.state.selected) {
+      this.props.onSearch(this.state.selected);
+      this.setState({
+        selected: null,
+        cities: [],
+        value: ''
+      });
+    }
   }
 
   _searchCities(term) {
@@ -74,6 +91,7 @@ class Search extends Component {
         searchCities(term).then(response => {
           this.setState({
             cities: response.data.location_suggestions,
+            notFound: (response.data.location_suggestions.length === 0),
             selected: null
           });
         });

@@ -23,7 +23,7 @@ class App extends Component {
       restaurants: [],
       restaurantsCurrent: 0,
       restaurantsTotal: 0,
-      loadMore: true,
+      hasMore: true,
       isLoading: false
     };
   }
@@ -38,10 +38,11 @@ class App extends Component {
             restaurants={this.state.restaurants}
             filters={this.state.filters}
             cuisines={this.state.cuisines}
+            hasMore={this.state.hasMore}
             onSearch={(city) => this._search(city)}
             onLoadCuisines={() => this._loadCuisines()}
             onLoadRestaurants={() => this._loadRestaurants()}
-            onChangeFilters={(filters) => this._changeFilters(filters)} /> :
+            onChangeFilters={(filters, reload) => this._changeFilters(filters, reload)} /> :
           <Home 
             isLoading={this.state.isLoading} 
             onSearch={(city) => this._search(city)} />}
@@ -54,7 +55,7 @@ class App extends Component {
       city,
       restaurantsTotal: 0,
       restaurantsCurrent: 0,
-      loadMore: true
+      hasMore: true
     });
   }
 
@@ -70,7 +71,7 @@ class App extends Component {
 
   async _loadRestaurants() {
     const start = this.state.restaurantsCurrent;
-    const cuisinesFilter = (this.state.filters.cuisines) ? this.state.filters.cuisines : null;
+    const cuisinesFilter = (this.state.filters.cuisines.length!==0) ? this.state.filters.cuisines : null;
     const { 
       data: { 
         restaurants, 
@@ -83,14 +84,27 @@ class App extends Component {
       return {
         restaurantsTotal: results_found,
         restaurantsCurrent: results_start + results_shown,
-        loadMore: (results_start + results_shown < results_found),
+        hasMore: (results_start + results_shown < 100 - results_shown),
         restaurants: [...prevState.restaurants, ...restaurants]
       };
     });
   }
 
-  _changeFilters(filters) {
-    // Change filters
+  _changeFilters(filters, reload) {
+    if (reload) {
+      this.setState({
+        filters,
+        restaurantsTotal: 0,
+        restaurantsCurrent: 0,
+        restaurants: [],
+        hasMore: true
+      });
+    } else {
+      this.setState({
+        filters
+      });
+    }
+    
   }
 
   _setLoading(bool) {

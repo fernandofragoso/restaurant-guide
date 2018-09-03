@@ -54,6 +54,13 @@ button:disabled {
   cursor: pointer;
 }
 
+.Search__option-not-found {
+  padding: 10px 15px;
+  border: 1px solid #EEE;
+  border-top: 0;
+  color: #A5A5A5;
+}
+
 .Search__option-item .state {
   font-size: 10px;
 }
