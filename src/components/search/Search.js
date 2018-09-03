@@ -68,7 +68,9 @@ class Search extends Component {
       cities: [],
       value: city.name
     });
-    this.nameInput.focus();
+    if (this.nameInput) {
+      this.nameInput.focus();
+    }
   }
 
   _handleSubmit() {
