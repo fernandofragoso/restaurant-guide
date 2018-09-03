@@ -77,3 +77,9 @@ button:disabled {
   color: #767676;
   font-size: 18px;
 }
+
+@media (max-width: 600px) {
+  button {
+    width: 90px;
+  }
+}

@@ -53,3 +53,26 @@
 .Restaurants__loading {
   text-align: center;
 }
+
+@media (max-width: 600px) 
+{
+  .Restaurants__header {
+    flex-direction: column;
+  }
+
+  .Restaurants__logo {
+    flex-basis: 0;
+  }
+
+  .Restaurants__search {
+    width: 95%;
+  }
+
+  .Restaurants__filters {
+    display: none;
+  }
+
+  .Restaurants__content {
+    flex-direction: column-reverse;
+  }
+}

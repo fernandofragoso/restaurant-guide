@@ -23,7 +23,7 @@
   flex-direction: column;
   justify-content: center;
   margin-bottom: 200px;
-  width: 700px;
+  max-width: 700px;
   text-align: left;
 }
 
@@ -32,4 +32,17 @@
   font-size: 44px;
   margin: 30px 0;
   line-height: 50px;
+}
+
+@media (max-width: 600px) {
+  .Home__center {
+    margin: 0 20px 200px 20px;
+  }
+
+  .Home__header {
+    color: #fff;
+    font-size: 24px;
+    margin: 30px 0;
+    line-height: 30px;
+  }
 }
