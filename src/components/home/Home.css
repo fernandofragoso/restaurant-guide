@@ -2,6 +2,7 @@
   text-align: center;
   background: url(/bg.jpg) no-repeat center center fixed; 
   background-size: cover;
+  background-color: #1E1D1B;
   height: 100%;
   display: flex;
   flex-direction: column;
