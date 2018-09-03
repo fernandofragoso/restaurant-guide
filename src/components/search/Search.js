@@ -29,9 +29,7 @@ class Search extends Component {
               placeholder='Digite a sua cidade' 
               value={this.state.value}
               onChange={(event) => this._handleChange(event)}
-              onKeyPress={(event) => {
-                (event.key === 'Enter') ? this._handleSubmit() : null
-              }}
+              onKeyPress={(event) => (event.key === 'Enter') ? this._handleSubmit() : null}
               type="text" />
           </div>
           <div className="Search__options">
