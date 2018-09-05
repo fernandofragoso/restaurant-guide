@@ -85,8 +85,8 @@ class App extends Component {
       let hasMore = true;
       if (results_shown === 0){
         hasMore = false;
-      } else if (results_start + results_shown < 100 - results_shown && results_start + results_shown < results_found) {
-        hasMore = true;
+      } else {
+        hasMore = (results_start + results_shown < 100 - results_shown);
       }
 
       return {
