@@ -81,10 +81,18 @@ class App extends Component {
       } 
     } = await getRestaurantsByCity(start, this.state.city.id, cuisinesFilter);
     this.setState((prevState) => {
+
+      let hasMore = true;
+      if (results_shown === 0){
+        hasMore = false;
+      } else if (results_start + results_shown < 100 - results_shown && results_start + results_shown < results_found) {
+        hasMore = true;
+      }
+
       return {
         restaurantsTotal: results_found,
-        restaurantsCurrent: results_start + results_shown,
-        hasMore: (results_start + results_shown < 100 - results_shown),
+        restaurantsCurrent: results_start + results_shown, 
+        hasMore,
         restaurants: [...prevState.restaurants, ...restaurants]
       };
     });
